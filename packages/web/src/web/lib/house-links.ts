@@ -1,0 +1,2 @@
+export const editorialSite = 'https://house-of-pulido-editorial.nessecito.chatgpt.site/';
+export const shirtFeedbackEmail = `mailto:Vanessa@houseofpulido.com?subject=${encodeURIComponent('My everyday shirt — a note for Vanessa and Ryan')}&body=${encodeURIComponent('Hi Vanessa and Ryan,\n\nWhat usually goes wrong with my favorite everyday shirt:\n\n\nThe detail I would love you to get right:\n\n\nThanks,\n')}`;
