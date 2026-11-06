@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Preview: kept non-indexed until public URL, sender verification, and legal notices are complete.
