@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://houseofpulido.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://houseofpulido.com/the-house</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://houseofpulido.com/first-edition</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://houseofpulido.com/journal</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://houseofpulido.com/journal/what-we-will-measure</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://houseofpulido.com/wear-test-collective</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://houseofpulido.com/faq</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>
