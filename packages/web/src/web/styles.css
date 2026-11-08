@@ -293,3 +293,17 @@ em { font-style:italic; font-weight:500; }
  .signup-copy .participation-question { font-size:29px; }
  .journey-list h3 { font-size:25px; }
 }
+
+/* FAQ: honest answers with native disclosure, 44px targets, brass accents. */
+.faq-list { max-width:880px; }
+.faq-row { border-top:1px solid var(--color-border); }
+.faq-row:last-child { border-bottom:1px solid var(--color-border); }
+.faq-row summary { cursor:pointer; font-family:var(--font-display); font-size:clamp(22px,3vw,30px); line-height:1.2; padding:var(--space-6) 0; min-height:44px; list-style:none; display:flex; align-items:baseline; justify-content:space-between; gap:var(--space-6); }
+.faq-row summary::-webkit-details-marker { display:none; }
+.faq-row summary::after { content:"+"; font-family:var(--font-body); color:var(--color-brass); font-size:28px; line-height:1; flex-shrink:0; }
+.faq-row[open] summary::after { content:"–"; }
+.faq-answer { padding-bottom:var(--space-8); max-width:65ch; }
+.faq-answer p { color:var(--color-muted); font-size:15px; }
+.faq-follow .faq-actions { display:flex; flex-wrap:wrap; gap:var(--space-4); margin-block:var(--space-6); }
+.faq-follow .faq-actions .hop-button { flex:1 1 260px; }
+@media(max-width:700px) { .faq-row summary { font-size:23px; } }
