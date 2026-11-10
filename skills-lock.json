@@ -1,23 +1,23 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
     "appllama-app-design-skill": {
-      "source": "appllama/appllama-skills",
+      "source": "Appllama/appllama-skills",
       "sourceType": "github",
       "skillPath": "skills/appllama-app-design-skill/SKILL.md",
-      "computedHash": "023b25559a5e9a4ab85ccffc9612d0d0f650608eb7f281dce8408a32649b2340"
+      "computedHash": "72e277fb3fd2baa1429824132269715feac74ab8cabbf7067a0fb1cddf666ffa"
     },
     "appllama-usage": {
-      "source": "appllama/appllama-skills",
+      "source": "Appllama/appllama-skills",
       "sourceType": "github",
       "skillPath": "skills/appllama-usage/SKILL.md",
-      "computedHash": "9b9ecf34e1585ad0e77d749e5e5178270ea1b73147459ef53db7340aa16eb4e2"
+      "computedHash": "bb58bbb520be9fdf40d23f7bc089f426c46bb45d7a1b8a6f043d6b8ac0b3df05"
     },
     "supabase-server": {
       "source": "supabase/server",
       "sourceType": "github",
       "skillPath": "skills/supabase-server/SKILL.md",
-      "computedHash": "bfbaab2e3151c329a2b32e14e9f914ebf08dddc3eed8bd69666e19bf3e8bbd2c"
+      "computedHash": "9a560aef83b25cbd6aa1c4f77dcdad7c771014d7ba30f64811b81516477ead12"
     }
   }
 }
