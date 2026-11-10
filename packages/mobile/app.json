@@ -5,7 +5,7 @@
       "package": "com.appId.runable",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#F3EFE5"
       },
       "edgeToEdgeEnabled": true
     },
@@ -20,10 +20,10 @@
     },
     "splash": {
       "image": "./assets/splash-icon.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "contain",
+      "backgroundColor": "#F3EFE5"
     },
-    "name": "mobile",
+    "name": "House of Pulido",
     "slug": "mobile",
     "version": "1.0.0",
     "scheme": "runable-houseof-5jnhpyb",
