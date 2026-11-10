@@ -16,4 +16,12 @@ config.resolver = {
   nodeModulesPaths: [resolve(__dirname, "node_modules"), resolve(workspaceRoot, "node_modules")],
 };
 
+const projectRoot = __dirname;
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (moduleName.startsWith("@/")) {
+    return context.resolveRequest(context, resolve(projectRoot, moduleName.slice(2)), platform);
+  }
+  return context.resolveRequest(context, moduleName, platform);
+};
+
 module.exports = config;

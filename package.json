@@ -9,6 +9,7 @@
     "dev": "cd packages/web && bunx vite",
     "dev:desktop": "cd packages/desktop && bunx vite",
     "dev:mobile": "cd packages/mobile && bunx expo start --port $(bun --print \"require('../../__ports.cjs').mobile\")",
+    "dev:wear-log": "cd packages/wear-test && bunx expo start --port 4500",
     "build": "turbo build",
     "build:web": "cd packages/web && bunx vite build",
     "start": "pm2 startOrRestart ecosystem.config.cjs --update-env",
