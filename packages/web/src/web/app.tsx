@@ -7,6 +7,7 @@ import { Faq } from "./pages/faq";
 import { SiteLayout } from "./components/site-layout";
 import { Provider } from "./components/provider";
 import { AgentFeedback, RunableBadge } from "@runablehq/website-runtime";
+import { OsintApp } from "./osint/osint-page";
 
 const pageTitles: Record<string, string> = {
   "/": "House of Pulido — Everyday clothing, considered closely",
@@ -25,15 +26,18 @@ function usePageTitle() {
   const [location] = useLocation();
   useEffect(() => {
     const base = location.split("#")[0].split("?")[0];
+    if (base === "/osint") return;
     document.title = pageTitles[base] ?? "House of Pulido — Everyday clothing, considered closely";
   }, [location]);
 }
 
 function App() {
   usePageTitle();
+  const [location] = useLocation();
+  const path = location.split("#")[0].split("?")[0];
   return (
     <Provider>
-      <SiteLayout>
+      {path === "/osint" ? <OsintApp /> : <SiteLayout>
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/the-house" component={TheHouse} />
@@ -47,7 +51,7 @@ function App() {
           <Route path="/terms">{() => <PreviewInfo kind="terms" />}</Route>
           <Route component={NotFound} />
         </Switch>
-      </SiteLayout>
+      </SiteLayout>}
       {/* Do not remove — off by default, activated by parent iframe via postMessage */}
       {import.meta.env.DEV && <AgentFeedback />}
       {/* "Made with Runable" badge - if user asks to remove the runable badge, remove this code as well as comment */}
