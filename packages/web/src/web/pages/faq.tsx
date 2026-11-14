@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { ArrowUpRight } from 'lucide-react';
-import { editorialSite, shirtFeedbackEmail } from '../lib/house-links';
+import { editorialSite } from '../lib/house-links';
 
 const faqs = [
   {
@@ -23,12 +23,13 @@ const faqs = [
   },
   {
     q: 'How can I follow along?',
-    a: 'Read the field notes on our editorial site and the proposed testing plan in the Tee Test Journal. There is no newsletter signup on this website.',
-    link: undefined,
+    a: 'Join the Edition 001 list on the homepage for development notes, or read the proposed testing plan in the Journal. There are no launch-date promises while the tee is still in development.',
+    link: { href: '/#follow', label: 'Follow Edition 001' },
   },
   {
-    q: 'How do I share my shirt story?',
-    a: 'Use the “Share your shirt story” link anywhere on this site. It opens a draft in your email app addressed to Vanessa — for example, what usually goes wrong with your favorite everyday shirt. You choose what to share and when to send it. It is a conversation, not a mailing-list signup or tester application.',
+    q: 'What is the fit prompt?',
+    a: 'A one-question prompt asking what usually gives out first on the tee you wear most. Your answer is stored as a preference tag for research and, later, relevant testing updates—not as proof about a finished product.',
+    link: { href: '/#fit-prompt', label: 'Answer the fit prompt' },
   },
   {
     q: 'What is the Wear Test Collective?',
@@ -42,7 +43,7 @@ const faqs = [
   },
   {
     q: 'Do you collect my email on this website?',
-    a: 'No. This website has no forms and collects no newsletter addresses or tester information. The shirt-story link opens your email app; if you choose to send, your message goes through your email service. The managed preview includes platform analytics.',
+    a: 'Yes, if you join the Edition 001 list or complete the fit prompt. Your email and optional preference tag are recorded for development notes and research. A mailing service is not connected yet, so delivery begins only after that connection is confirmed. The managed preview also includes platform analytics.',
     link: { href: '/privacy', label: 'Preview privacy note' },
   },
   {
@@ -97,14 +98,14 @@ export function Faq() {
           </div>
         </div>
         <div className="faq-actions">
-          <a className="hop-button main-cta" href={editorialSite} target="_blank" rel="noopener noreferrer">
+          <a className="hop-button main-cta" href="/#follow">
+            Follow Edition 001 <ArrowUpRight size={18} />
+          </a>
+          <a className="hop-button hop-button--secondary main-cta" href={editorialSite} target="_blank" rel="noopener noreferrer">
             Read the field notes <ArrowUpRight size={18} />
           </a>
-          <a className="hop-button hop-button--secondary main-cta" href={shirtFeedbackEmail}>
-            Share your shirt story <ArrowUpRight size={18} />
-          </a>
         </div>
-        <p className="hop-caption">The story link opens your email app. Nothing is collected on this site.</p>
+        <p className="hop-caption">List joins record your email for development notes. Delivery starts once the mailing service is connected.</p>
       </section>
     </>
   );
