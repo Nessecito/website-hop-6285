@@ -23,17 +23,17 @@ const faqs = [
   },
   {
     q: 'How can I follow along?',
-    a: 'Read the field notes on our editorial site and the proposed testing plan in the Tee Test Journal. There is no newsletter signup on this website.',
+    a: 'Use “Get Edition 001 updates” on the homepage. The list is for development notes, not a launch date, a preorder, or a tester application. The ledger on that page says what is known and what is still open.',
     link: undefined,
   },
   {
     q: 'How do I share my shirt story?',
-    a: 'Use the “Share your shirt story” link anywhere on this site. It opens a draft in your email app addressed to Vanessa — for example, what usually goes wrong with your favorite everyday shirt. You choose what to share and when to send it. It is a conversation, not a mailing-list signup or tester application.',
+    a: 'The homepage fit prompt can save what usually gives out first, plus two optional details, with your Edition 001 address. You can also email Vanessa directly. Neither path is a tester application or a product reservation.',
   },
   {
     q: 'What is the Wear Test Collective?',
-    a: 'A planned small adult pilot with different routines and preferences. Applications are not open; the pilot budget, recruitment criteria, and prototype availability still need to be confirmed. Newsletter membership, if it ever exists, will not be a tester application or product reservation.',
-    link: { href: '/wear-test-collective', label: 'Read the participation plan' },
+    a: 'Adults 18 and older can apply on the homepage to wear and wash a prototype in their usual routine. This preview saves the application and does not send mail yet. Being selected, receiving a prototype, and any incentive are still unconfirmed. The list signup is not an application.',
+    link: { href: '/#apply', label: 'Apply to wear test No. 001' },
   },
   {
     q: 'What will you measure?',
@@ -42,12 +42,12 @@ const faqs = [
   },
   {
     q: 'Do you collect my email on this website?',
-    a: 'No. This website has no forms and collects no newsletter addresses or tester information. The shirt-story link opens your email app; if you choose to send, your message goes through your email service. The managed preview includes platform analytics.',
+    a: 'The Edition 001 form stores your email, your consent, and any fit answers you gave. The wear-test form stores your name, email, usual size, an optional note, and your confirmation that you are 18 or older. This preview keeps those records and does not send mail until a sending service is connected. The list confirmation lets you remove the address. The managed preview also includes platform analytics.',
     link: { href: '/privacy', label: 'Preview privacy note' },
   },
   {
     q: 'How do I contact you?',
-    a: 'Email Vanessa directly at Vanessa@houseofpulido.com. There is no website contact form or live chat, and no reply-time promise.',
+    a: 'Email Vanessa directly at Vanessa@houseofpulido.com. The homepage can save an Edition 001 address or a wear-test application. Those are not a live chat, and this preview does not send mail yet. There is no reply-time promise.',
   },
 ];
 
@@ -77,9 +77,15 @@ export function Faq() {
             <div className="faq-answer">
               <p>{item.a}</p>
               {item.link && (
-                <Link href={item.link.href} className="text-link">
-                  {item.link.label} <ArrowUpRight size={18} />
-                </Link>
+                item.link.href.includes("#") ? (
+                  <a href={item.link.href} className="text-link">
+                    {item.link.label} <ArrowUpRight size={18} />
+                  </a>
+                ) : (
+                  <Link href={item.link.href} className="text-link">
+                    {item.link.label} <ArrowUpRight size={18} />
+                  </Link>
+                )
               )}
             </div>
           </details>
@@ -92,7 +98,7 @@ export function Faq() {
             <h2>
               Read the notes.
               <br />
-              Share your story.
+              Or write directly.
             </h2>
           </div>
         </div>
@@ -104,7 +110,7 @@ export function Faq() {
             Share your shirt story <ArrowUpRight size={18} />
           </a>
         </div>
-        <p className="hop-caption">The story link opens your email app. Nothing is collected on this site.</p>
+        <p className="hop-caption">The email link opens your email app. The Edition 001 list is on the homepage.</p>
       </section>
     </>
   );

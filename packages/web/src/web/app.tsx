@@ -5,11 +5,12 @@ import { TheHouse, FirstEdition, Journal, PreviewInfo, NotFound } from "./pages/
 import { MethodNote, WearTestCollective } from "./pages/research";
 import { Faq } from "./pages/faq";
 import { SiteLayout } from "./components/site-layout";
+import "./editorial.css";
 import { Provider } from "./components/provider";
 import { AgentFeedback, RunableBadge } from "@runablehq/website-runtime";
 
 const pageTitles: Record<string, string> = {
-  "/": "House of Pulido — Everyday clothing, considered closely",
+  "/": "Everyday Tee in Development | House of Pulido",
   "/the-house": "The House — House of Pulido",
   "/first-edition": "First Edition development hub — House of Pulido",
   "/journal": "Tee Test Journal — House of Pulido",
@@ -25,7 +26,7 @@ function usePageTitle() {
   const [location] = useLocation();
   useEffect(() => {
     const base = location.split("#")[0].split("?")[0];
-    document.title = pageTitles[base] ?? "House of Pulido — Everyday clothing, considered closely";
+    document.title = pageTitles[base] ?? "House of Pulido — Made to become yours";
   }, [location]);
 }
 

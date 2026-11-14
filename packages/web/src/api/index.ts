@@ -1,5 +1,7 @@
 import type { RouterClient } from "@orpc/server";
 import { createApp } from "./__core/app";
+import { editionList } from "./routes/edition-list";
+import { wearTest } from "./routes/wear-test";
 import { ping } from "./routes/ping";
 
 // API features are oRPC procedures, one file per feature in ./routes/,
@@ -10,6 +12,8 @@ import { ping } from "./routes/ping";
 // Patterns and examples: skills/app/references/api.md
 export const router = {
   ping,
+  editionList,
+  wearTest,
 };
 
 export type AppRouter = typeof router;
