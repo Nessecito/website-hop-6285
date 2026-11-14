@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "wouter";
 import { EditionListForm } from "../components/edition-list-form";
 import { WearTestForm } from "../components/wear-test-form";
+import { closetArchaeology } from "../lib/house-links";
 import {
   cadenceChoices,
   fitChoices,
@@ -178,10 +179,11 @@ export function Home() {
       <section className="application" id="apply">
         <div className="application-grid wrap">
           <div>
-            <p className="index-line">No. 001 / Tester applications</p>
+            <p className="index-line">First round / Closet Archaeology</p>
             <h2>The Wear Test<br />Collective.</h2>
-            <p>Help shape our first tee. Selected testers will wear and wash a prototype in their usual routine, then tell us what they noticed about fit, feel, and how it changed.</p>
-            <p>Open to adults 18+. We’ll email selected applicants with the next steps.</p>
+            <p>The first round is Closet Archaeology, a field guide to the clothes you already keep. The sample wardrobe there is fictional. It is not a prototype in the mail, and it does not reserve Edition 001.</p>
+            <p><a className="underlink" href={closetArchaeology} target="_blank" rel="noopener noreferrer">Open Closet Archaeology</a></p>
+            <p>A later step would put a labeled prototype into an ordinary routine. The form can save that interest for adults 18+. It does not select you, send a garment, or confirm an incentive.</p>
             <a className="underlink" href="#edition">Back to No. 001</a>
           </div>
           <WearTestForm />

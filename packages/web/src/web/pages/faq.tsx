@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: 'What is the Wear Test Collective?',
-    a: 'Adults 18 and older can apply on the homepage to wear and wash a prototype in their usual routine. This preview saves the application and does not send mail yet. Being selected, receiving a prototype, and any incentive are still unconfirmed. The list signup is not an application.',
+    a: 'The first round is Closet Archaeology, a field guide to the clothes you already own. The sample wardrobe there is fictional. It is not a prototype and it does not reserve a tee. The homepage can also save interest in a later prototype round. Selection, a garment, and any incentive are still unconfirmed.',
     link: { href: '/#apply', label: 'Apply to wear test No. 001' },
   },
   {
