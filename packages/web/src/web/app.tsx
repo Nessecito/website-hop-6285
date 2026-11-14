@@ -10,7 +10,7 @@ import { AgentFeedback, RunableBadge } from "@runablehq/website-runtime";
 import { OsintApp } from "./osint/osint-page";
 
 const pageTitles: Record<string, string> = {
-  "/": "House of Pulido — Everyday clothing, considered closely",
+  "/": "House of Pulido — Made to become yours",
   "/the-house": "The House — House of Pulido",
   "/first-edition": "First Edition development hub — House of Pulido",
   "/journal": "Tee Test Journal — House of Pulido",

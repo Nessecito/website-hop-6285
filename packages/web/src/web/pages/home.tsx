@@ -1,45 +1,165 @@
 import { Link } from 'wouter';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { DevelopmentStatus } from '../components/development';
-import { editorialSite } from '../lib/house-links';
+import { FitPrompt } from '../components/fit-prompt';
+import { track } from '../lib/analytics';
 
 export function Home() {
-  return <>
-    <section className="hero">
-      <div className="hero-copy">
-        <div className="hop-eyebrow hero-eyebrow"><span className="tiny-rule"/>From Fort Worth · With Vanessa & Ryan</div>
-        <h1>Everyday clothing,<br/><em>considered closely.</em></h1>
-        <p className="hero-question">A family name from Fort Worth. A new chapter, made together.</p>
-        <p>We’re Vanessa and Ryan, carrying the Pulido name into clothing and building our first everyday tee in the open. Come follow the materials, the questions, and the small decisions that make it ours.</p>
-        <a className="hop-button main-cta" href={editorialSite} target="_blank" rel="noopener noreferrer">Read our field notes <ArrowUpRight size={18}/></a>
-        <a className="text-link hero-participation" href="#follow">Tell us about your everyday shirt <ArrowRight size={18}/></a>
-        <span className="hero-footnote">There’s a place for your experience in the making.</span>
-      </div>
-      <div className="hero-plate" aria-label="Our development philosophy">
-        <div className="plate-top"><span className="hop-eyebrow">The Pulido point of view</span><span className="plate-mark">H · P</span></div>
-        <img src="/brand/assets/monogram-ivory.png" alt="House of Pulido monogram" width="200" height="200" loading="eager" fetchPriority="high"/>
-        <p>Consider the material.<br/>Learn through wear.<br/><em>Earn the claim.</em></p>
-        <div className="plate-bottom"><span>OUR GOAL: GARMENTS WORTH PASSING ON.</span><span>Come along for the making.</span></div>
-      </div>
-    </section>
-    <div className="manifesto-strip"><span className="hop-eyebrow">The guiding question</span><p>What makes you reach for it again?</p><span className="strip-number">THE EVERYDAY / RECONSIDERED</span></div>
+  return (
+    <>
+      <section className="hero">
+        <div className="hero-copy">
+          <div className="hop-eyebrow hero-eyebrow">
+            <span className="tiny-rule" />
+            House of Pulido · Fort Worth, Texas
+          </div>
+          <h1>
+            Made to become
+            <br />
+            <em>yours.</em>
+          </h1>
+          <p>
+            Everyday clothing, considered closely. House of Pulido is developing
+            its first edition around one question: what would make the tee you
+            reach for most feel worth keeping?
+          </p>
+          <a
+            className="hop-button main-cta"
+            href="#follow"
+            onClick={() => track('hero_cta_clicked', { variant: 'follow_edition_001' })}
+          >
+            Follow Edition 001 <ArrowRight size={18} aria-hidden="true" />
+          </a>
+          <span className="hero-footnote">
+            Occasional development notes. No launch-date promises.
+          </span>
+        </div>
+        <figure className="hero-art">
+          <img
+            src="/brand/leather-study.jpg"
+            alt="Close study of natural material texture with the House of Pulido monogram—brand atmosphere, not a finished garment"
+            width="1200"
+            height="1200"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <figcaption>
+            <span>Editorial study</span>
+            <span>Texture · not a product mockup</span>
+          </figcaption>
+        </figure>
+      </section>
 
-    <section className="section problem-section">
-      <div className="section-heading"><div><span className="hop-eyebrow">01 / Start with your experience</span><h2>A favorite tee.<br/>Until it isn’t.</h2></div><p>Maybe the fit changes. Maybe the seams twist. Maybe it simply stops feeling like your favorite. We’re starting with the details you notice in everyday wear.</p></div>
-      <div className="principles">{[['01','Does the fit stay familiar?','We plan to measure dimensional change and twisting through repeat care trials.'],['02','Does the fabric earn its place?','We plan to compare opacity, construction, appearance, and practical care.'],['03','Would you wear it again?','Structured wearer feedback will sit alongside measurements—not replace them.']].map(([n,title,body])=><div className="principle" key={n}><span className="hop-eyebrow">{n} / Research question</span><h3>{title}</h3><p>{body}</p></div>)}</div>
-    </section>
+      <section
+        className="section edition-block"
+        id="first-edition"
+        aria-labelledby="edition-title"
+      >
+        <div className="edition-symbol" aria-hidden="true">
+          <span className="hop-eyebrow">Edition mark</span>
+          <img
+            src="/brand/assets/monogram-espresso.png"
+            alt=""
+            width="200"
+            height="200"
+            loading="lazy"
+          />
+          <span className="hop-caption">PULIDO · No. 001</span>
+        </div>
+        <div className="edition-copy">
+          <span className="hop-eyebrow">First edition</span>
+          <h2 id="edition-title">PULIDO No. 001 Everyday Tee</h2>
+          <p>
+            The first object is not ready to be sold yet. It is being developed
+            as a durable, cotton-first everyday tee with a considered hand, fit,
+            and wash life.
+          </p>
+          <div className="principles edition-markers">
+            {[
+              ['01', 'Fit worth returning to'],
+              ['02', 'Fabric tested in real rotation'],
+              ['03', 'Details chosen for long use'],
+            ].map(([n, title]) => (
+              <div className="principle" key={n}>
+                <span className="hop-eyebrow">{n}</span>
+                <h3>{title}</h3>
+              </div>
+            ))}
+          </div>
+          <Link href="/first-edition" className="text-link">
+            See what is being developed <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
 
-    <section className="section programs-section">
-      <div className="section-heading"><div><span className="hop-eyebrow">02 / The work before the garment</span><h2>Two ways to learn.<br/>One honest record.</h2></div><Link href="/first-edition" className="text-link">Inside the development hub <ArrowUpRight size={18}/></Link></div>
-      <div className="programs-grid">
-        <div className="program"><span className="hop-eyebrow">A / Materials & method</span><h3>The Pulido<br/>Material Lab</h3><p>Our first fabric comparisons are underway. The next steps are baseline measurements and repeat care trials, with the conditions and trade-offs shared alongside what we learn.</p><Link href="/journal/what-we-will-measure" className="text-link">Read our testing plan <ArrowUpRight size={18}/></Link></div>
-        <div className="program"><span className="hop-eyebrow">B / A community taking shape</span><h3>The Wear Test<br/>Collective</h3><p>Different routines. Different preferences. Real room for feedback. As the tee develops, we’ll bring wearers into the process. Your everyday experience can help shape the questions now.</p><a href="#follow" className="text-link">Start with your shirt story <ArrowUpRight size={18}/></a></div>
-      </div>
-    </section>
-    <DevelopmentStatus/>
+      <FitPrompt />
+      <DevelopmentStatus />
 
-    <section className="section story-grid"><div><span className="hop-eyebrow">03 / The House · Fort Worth, Texas</span><h2>A name remembered.<br/>A story still being made.</h2></div><div className="story-copy"><p className="large-copy">Before it was a label,<br/>Pulido’s was a name at the table.</p><p>The Pulido’s restaurant legacy is part of Fort Worth’s family story. For us—Vanessa and Ryan—carrying the name into clothing is a personal next chapter.</p><p>House of Pulido is our independent clothing venture. We’re beginning with the everyday tee: something familiar, useful, and worth giving our attention to.</p><p><Link href="/faq" className="text-link">Questions, answered plainly <ArrowUpRight size={18}/></Link></p><Link href="/the-house" className="text-link">Meet the house <ArrowUpRight size={18}/></Link></div></section>
+      <section className="section story-grid" aria-labelledby="house-title">
+        <div>
+          <span className="hop-eyebrow">The house</span>
+          <h2 id="house-title">
+            A family name, carried
+            <br />
+            forward with care.
+          </h2>
+        </div>
+        <div className="story-copy">
+          <p>
+            House of Pulido is an independent apparel house rooted in the Pulido
+            family name and Fort Worth heritage. It is not the restaurant’s
+            successor. It is a new expression of a legacy: fewer,
+            better-considered things made for a life actually lived.
+          </p>
+          <Link href="/the-house" className="text-link">
+            The story of the house <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
 
-    <section className="section journal-preview"><div className="section-heading"><div><span className="hop-eyebrow">04 / Notes from the making</span><h2>The material.<br/>The method. The story.</h2></div><Link href="/journal" className="text-link">Open the Tee Test Journal <ArrowUpRight size={18}/></Link></div><p className="journal-intro">There’s already a beginning to read. Explore the material and process writing on our editorial site, or start here with the testing plan. We’ll share results as the work produces them.</p><div className="journal-list"><a href={editorialSite} target="_blank" rel="noopener noreferrer" className="journal-row"><span className="journal-number">01</span><div><span className="hop-eyebrow">Field notes / Our editorial site</span><h3>Step inside the first chapter</h3><p className="hop-caption">The material brief, our point of view, and the story behind the house.</p></div><ArrowUpRight size={22}/></a><Link href="/journal/what-we-will-measure" className="journal-row"><span className="journal-number">02</span><div><span className="hop-eyebrow">Tee Test Journal / Testing plan</span><h3>What we’ll measure before launch</h3><p className="hop-caption">The questions, care checkpoints, and how we intend to learn.</p></div><ArrowRight size={22}/></Link></div></section>
-  </>;
+      <section className="section" aria-labelledby="standard-title">
+        <div className="section-heading">
+          <div>
+            <span className="hop-eyebrow">The standard</span>
+            <h2 id="standard-title">
+              Good things take
+              <br />
+              consideration.
+            </h2>
+          </div>
+          <p>
+            We care about longevity, material choices, and a clear account of
+            how each piece is made. That means testing first and claiming only
+            what can be supported.
+          </p>
+        </div>
+        <div className="principles">
+          {[
+            [
+              '01',
+              'Repeat wear',
+              'Design for repeat wear, not a single season.',
+            ],
+            [
+              '02',
+              'Clear evidence',
+              'Prefer clear evidence over vague sustainability language.',
+            ],
+            [
+              '03',
+              'Future use',
+              'Make care, repair, and future use part of the product story.',
+            ],
+          ].map(([n, title, body]) => (
+            <div className="principle" key={n}>
+              <span className="hop-eyebrow">{n}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  );
 }

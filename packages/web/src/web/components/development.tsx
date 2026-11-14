@@ -10,9 +10,83 @@ export const releaseGates = [
   ['5', 'Commercial release', 'Sign off the decision and match every public product claim to evidence on file.'],
 ];
 
+const ledger = [
+  {
+    area: 'Customer discovery',
+    status: 'In progress',
+    copy: 'Listening to people who wear tees often and have specific standards.',
+  },
+  {
+    area: 'Fabric direction',
+    status: 'Candidate specification',
+    copy: 'Cotton-first; evaluating weight, recovery, opacity, and hand.',
+  },
+  {
+    area: 'Sample testing',
+    status: 'Testing next',
+    copy: 'Wash, wear, fit, and construction testing before production is considered.',
+  },
+  {
+    area: 'Claims and traceability',
+    status: 'Unresolved',
+    copy: 'Any durability or sustainability claim will need product-specific proof.',
+  },
+  {
+    area: 'Founder’s edition',
+    status: 'Not announced',
+    copy: 'Details will be shared only once the product earns them.',
+  },
+] as const;
+
 export function DevelopmentStatus() {
-  return <section className="development-status" aria-labelledby="status-heading">
-    <div><span className="hop-eyebrow">The first tee / A journey taking shape</span><h2 id="status-heading">Small steps.<br/>A thoughtful beginning.</h2><p>We’ve put the everyday wearer at the center of our brief, built the testing checklist, and begun our first fabric comparisons. Here’s where the work is taking us.</p><Link href="/first-edition#release-gates" className="text-link">Follow the path to the first tee <ArrowUpRight size={18}/></Link></div>
-    <ol className="journey-list"><li><span className="hop-eyebrow">01 / Written</span><h3>The customer brief</h3><p>Who the tee is for, and what it should bring to everyday wear.</p></li><li><span className="hop-eyebrow">02 / Built</span><h3>The testing checklist</h3><p>The questions and care checkpoints that will guide our comparisons.</p></li><li><span className="hop-eyebrow">03 / Underway</span><h3>The first fabric comparisons</h3><p>Looking closely at the materials before the next prototype decisions.</p></li><li><span className="hop-eyebrow">04 / Ahead</span><h3>What we learn, shared openly</h3><p>Results and revisions will join the journal as the work produces them.</p></li></ol>
-  </section>;
+  return (
+    <section
+      className="section development-ledger"
+      id="development-ledger"
+      aria-labelledby="ledger-heading"
+    >
+      <div className="section-heading">
+        <div>
+          <span className="hop-eyebrow">Development ledger</span>
+          <h2 id="ledger-heading">
+            What is known. What is being tested.
+            <br />
+            What comes next.
+          </h2>
+        </div>
+        <p>
+          We will keep the work visible without pretending every decision has
+          been made.
+        </p>
+      </div>
+
+      <table className="ledger-table">
+        <caption className="visually-hidden">Development ledger</caption>
+        <thead>
+          <tr className="ledger-row ledger-head">
+            <th scope="col">Area</th>
+            <th scope="col">Current status</th>
+            <th scope="col">Public-facing note</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ledger.map((row) => (
+            <tr className="ledger-row" key={row.area}>
+              <th scope="row" className="ledger-area">
+                {row.area}
+              </th>
+              <td className="ledger-status">
+                <span className="status-chip">{row.status}</span>
+              </td>
+              <td className="ledger-copy">{row.copy}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <Link href="/journal" className="text-link">
+        Read the development notes <ArrowUpRight size={18} aria-hidden="true" />
+      </Link>
+    </section>
+  );
 }
