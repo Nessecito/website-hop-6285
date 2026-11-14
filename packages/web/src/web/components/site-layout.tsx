@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 're
 import { Link, useLocation } from 'wouter';
 import { Menu, X } from 'lucide-react';
 import { EditionListForm } from './edition-list-form';
+import { closetArchaeology, houseSite } from '../lib/house-links';
 
 const sections = [
   ['edition', 'First Edition'],
@@ -16,8 +17,6 @@ const social = [
   ['https://www.threads.com/@houseofpulido', 'Threads'],
   ['https://www.facebook.com/profile.php?id=61595523170333', 'Facebook'],
 ] as const;
-
-const closet = 'https://house-of-pulido-editorial.nessecito.chatgpt.site/closet-archaeology';
 
 export function Signup() {
   return <section className="signup section" id="updates" aria-labelledby="updates-title">
@@ -100,16 +99,17 @@ export function SiteLayout({children}: {children: ReactNode}) {
             <a href="/#house" onClick={(event) => goToSection(event, 'house')}>The House</a>
             <a href="/#journal" onClick={(event) => goToSection(event, 'journal')}>Journal</a>
             <a href="/#updates" onClick={(event) => goToSection(event, 'updates')}>Follow Edition 001</a>
-            <a href="/#apply" onClick={(event) => goToSection(event, 'apply')}>Apply to test</a>
+            <a href="/#apply" onClick={(event) => goToSection(event, 'apply')}>First round</a>
           </nav>
         </div>
         <nav aria-label="Social" className="social-links">
           {social.map(([href, label]) => <a key={label} href={href} target="_blank" rel="noopener noreferrer">{label}</a>)}
-          <a href={closet} target="_blank" rel="nofollow noopener noreferrer">Closet Archaeology</a>
+          <a href={closetArchaeology} target="_blank" rel="noopener noreferrer">Closet Archaeology</a>
         </nav>
         <p className="footer-word">Pulido</p>
         <div className="footer-bottom">
           <span>© 2026 House of Pulido</span>
+          <a href={houseSite}>www.houseofpulido.com</a>
           <a href="#main">Back to top</a>
         </div>
         <nav aria-label="House notes" className="footer-legal">
