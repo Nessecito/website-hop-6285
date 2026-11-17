@@ -1,3 +1,5 @@
+import { supabaseAdmin, unavailable } from "./supabase-admin";
+
 export type StoredSubscriber = {
   email: string;
   preference: string | null;
@@ -9,79 +11,32 @@ export type StoredSubscriber = {
   updatedAt: string;
 };
 
-type FileApi = {
-  mkdir: (path: string, options?: { recursive?: boolean }) => Promise<void>;
-  readFile: (path: string, encoding: "utf8") => Promise<string>;
-  writeFile: (path: string, data: string) => Promise<void>;
-};
+export async function saveSubscriber(entry: Omit<StoredSubscriber, "createdAt" | "updatedAt">) {
+  const admin = supabaseAdmin();
+  const existing = await admin
+    .from("edition_list")
+    .select("preference, priority, cadence")
+    .eq("email", entry.email)
+    .maybeSingle();
+  if (existing.error) unavailable("edition-list", existing.error);
 
-const listFile = new URL("../../data/edition-list.json", import.meta.url);
-const listDir = new URL("../../data/", import.meta.url);
-
-function filePath(url: URL) {
-  return decodeURIComponent(url.pathname);
-}
-
-async function files(): Promise<FileApi> {
-  const load = new Function("specifier", "return import(specifier)") as (specifier: string) => Promise<FileApi>;
-  return load("node:fs/promises");
-}
-
-let chain: Promise<unknown> = Promise.resolve();
-
-function withLock<T>(task: () => Promise<T>): Promise<T> {
-  const run = chain.then(task, task);
-  chain = run.then(
-    () => undefined,
-    () => undefined,
+  const saved = await admin.from("edition_list").upsert(
+    {
+      email: entry.email,
+      preference: entry.preference ?? existing.data?.preference ?? null,
+      priority: entry.priority ?? existing.data?.priority ?? null,
+      cadence: entry.cadence ?? existing.data?.cadence ?? null,
+      source: entry.source,
+      hero_variant: entry.heroVariant,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "email" },
   );
-  return run;
+  if (saved.error) unavailable("edition-list", saved.error);
 }
 
-async function readAll(): Promise<StoredSubscriber[]> {
-  try {
-    const parsed = JSON.parse(await (await files()).readFile(filePath(listFile), "utf8")) as unknown;
-    if (!Array.isArray(parsed)) return [];
-    return parsed.filter((row): row is StoredSubscriber => {
-      return !!row && typeof row === "object" && typeof (row as StoredSubscriber).email === "string";
-    });
-  } catch {
-    return [];
-  }
-}
-
-async function writeAll(rows: StoredSubscriber[]) {
-  const fs = await files();
-  await fs.mkdir(filePath(listDir), { recursive: true });
-  await fs.writeFile(filePath(listFile), `${JSON.stringify(rows, null, 2)}\n`);
-}
-
-export function saveSubscriber(entry: Omit<StoredSubscriber, "createdAt" | "updatedAt">) {
-  return withLock(async () => {
-    const rows = await readAll();
-    const now = new Date().toISOString();
-    const index = rows.findIndex((row) => row.email === entry.email);
-    if (index === -1) {
-      rows.push({ ...entry, createdAt: now, updatedAt: now });
-    } else {
-      const current = rows[index];
-      rows[index] = {
-        ...current,
-        preference: entry.preference ?? current.preference,
-        priority: entry.priority ?? current.priority ?? null,
-        cadence: entry.cadence ?? current.cadence ?? null,
-        source: entry.source,
-        heroVariant: entry.heroVariant,
-        updatedAt: now,
-      };
-    }
-    await writeAll(rows);
-  });
-}
-
-export function removeSubscriber(email: string) {
-  return withLock(async () => {
-    const rows = await readAll();
-    await writeAll(rows.filter((row) => row.email !== email));
-  });
+export async function removeSubscriber(email: string) {
+  const admin = supabaseAdmin();
+  const removed = await admin.from("edition_list").delete().eq("email", email);
+  if (removed.error) unavailable("edition-list", removed.error);
 }

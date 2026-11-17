@@ -90,7 +90,7 @@ export function WearTestForm() {
         <span>I’m 18 or older and agree to be contacted about this wear test.</span>
       </label>
       <p className="form-note" role={message ? "alert" : undefined}>
-        {message || "House of Pulido uses these details to review applications and contact testers. This preview saves the application and does not send that email yet."}
+        {message || "These details are stored for a later prototype review. This does not select you or send email yet."}
       </p>
       <button type="submit" disabled={pending}>{pending ? "Saving…" : "Submit application"}</button>
     </form>

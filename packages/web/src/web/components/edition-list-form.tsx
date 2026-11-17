@@ -12,7 +12,7 @@ type Props = {
   idPrefix: string;
 };
 
-const previewNote = " This preview saves the address here. Mail is not sent until a sending service is connected.";
+const previewNote = " The address is stored for development notes. Mail is not sent until a sending service is connected.";
 
 export function EditionListForm({ source, answers, label, button, consent, note, idPrefix }: Props) {
   const [email, setEmail] = useState("");
